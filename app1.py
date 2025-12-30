@@ -22,7 +22,7 @@ def load_model():
         model.to("cpu")
         return model
     except Exception as e:
-        st.error(f"❌ Failed to load model: {e}")
+        st.error(f"Failed to load model: {e}")
         st.stop()
 
 
@@ -44,7 +44,8 @@ conf_threshold = st.sidebar.slider(
 # -------------------------------
 st.title("🛒 Smart Store Product Detection System")
 st.markdown("Upload an image to detect products using a YOLOv8 model.")
-
+st.markdown("Upload images of retail product from this 18 category only!")
+st.markdown("cake, candy, cereal, chips, chocolate, coffee, fish, honey, jam, milk, oil, pasta, rice, soda, sugar, tea, vinegar, water")
 # -------------------------------
 # File Upload
 # -------------------------------
