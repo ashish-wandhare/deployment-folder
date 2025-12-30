@@ -14,19 +14,19 @@ st.set_page_config(
 # -------------------------------
 # Load Model (cached)
 # -------------------------------
-'''
+
 @st.cache_resource
 def load_model():
-    return YOLO("best.pt")
+    try:
+        model = YOLO("best.pt")
+        model.to("cpu")
+        return model
+    except Exception as e:
+        st.error(f"❌ Failed to load model: {e}")
+        st.stop()
+
 
 model = load_model()
-'''
-@st.cache_resource
-def load_model():
-    model = YOLO("best.pt")
-    model.to("cpu")
-    return model
-
 # -------------------------------
 # Sidebar Controls
 # -------------------------------
