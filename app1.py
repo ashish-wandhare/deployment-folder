@@ -1,6 +1,6 @@
 import streamlit as st
 from ultralytics import YOLO
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 import pandas as pd
 
 # -------------------------------
@@ -111,8 +111,9 @@ def draw_boxes(image, results, model):
 if uploaded_file:
     col1, col2 = st.columns(2)
 
-    image = Image.open(uploaded_file).convert("RGB")
-
+    image = ImageOps.exif_transpose(Image.open(uploaded_file)).convert("RGB")
+    MAX_SIZE = 1280
+    image.thumbnail((MAX_SIZE, MAX_SIZE))
     with col1:
         st.subheader("Original Image")
         st.image(image, use_container_width=True)
